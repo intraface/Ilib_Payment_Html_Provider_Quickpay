@@ -73,7 +73,17 @@ class Ilib_Payment_Html_Provider_Quickpay_Prepare extends Ilib_Payment_Html_Prep
         */
         
         return $fields;
-    } 
+    }
+    
+    /**
+     * Returns the name of the provider. Needs to be overridden in extends.
+     * 
+     * @return string name of provider
+     */
+    public function getProviderName()
+    {
+        return 'Quickpay';
+    }
 }
 
 
