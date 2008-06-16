@@ -67,10 +67,11 @@ class Ilib_Payment_Html_Provider_Quickpay_Postprocess extends Ilib_Payment_Html_
             throw new Exception('The payment was not accepted');
         }
         
-        $this->values['amount'] = ($input['amount']/100);
-        $this->values['order_number'] = $input['ordernum'];
-        $this->values['pbs_status'] = $input['pbsstat'];
-        $this->values['transaction_id'] = $input['transaction'];
+        $this->amount = ($input['amount']/100);
+        $this->order_number = $input['ordernum'];
+        $this->pbs_status = $input['pbsstat'];
+        $this->transaction_number = $input['transaction'];
+        $this->transaction_status = $input['qpstat'];
         
         foreach($input AS $key => $optional) {
             if(substr($key, 0, 7) == 'CUSTOM_') {
