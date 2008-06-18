@@ -64,13 +64,13 @@ class Ilib_Payment_Html_Provider_Quickpay_Prepare extends Ilib_Payment_Html_Prep
             '<input type="hidden" name="ccipage" value="'.$this->safeToHtml($this->payment_values['inputpage']).'" />'.
             '<input type="hidden" name="md5checkV2" value="'.$this->safeToHtml($md5check).'" />';
         
-        /*
-        if(is_array($optional_input)) {
-            foreach($optional_input AS $key => $value) {
+        
+        if(is_array($this->optional_values)) {
+            foreach($this->optional_values AS $key => $value) {
                 $fields .= '<input type="hidden" name="CUSTOM_'.$key.'" value="'.$this->safeToHtml($value).'" />';
             }
         }
-        */
+        
         
         return $fields;
     }
