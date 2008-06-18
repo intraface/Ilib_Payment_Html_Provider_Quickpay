@@ -57,7 +57,7 @@ class PostprocessTest extends PHPUnit_Framework_TestCase
         $postprocess = $this->createPostprocess();
         $postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605'));
         
-        $this->assertEquals(10, $postprocess->getTransactionId());
+        $this->assertEquals(10, $postprocess->getTransactionNumber());
         
     }
     
