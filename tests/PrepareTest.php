@@ -37,7 +37,9 @@ class PrepareTest extends PHPUnit_Framework_TestCase
                 '<input type="hidden" name="errorpage" value="http://localhosts/error" />' .
                 '<input type="hidden" name="resultpage" value="http://localhosts/result" />' .
                 '<input type="hidden" name="ccipage" value="http://localhosts/input" />' .
-                '<input type="hidden" name="md5checkV2" value="9a532818bad3d07fb59e298c4c6157aa" />';
+                '<input type="hidden" name="md5checkV2" value="9a532818bad3d07fb59e298c4c6157aa" />' .
+                '<input type="hidden" name="CUSTOM_var1" value="10" />' .
+                '<input type="hidden" name="CUSTOM_var2" value="20" />';
         
         
         
