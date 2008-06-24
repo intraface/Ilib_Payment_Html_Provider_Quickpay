@@ -14,6 +14,18 @@ class Ilib_Payment_Html_Provider_Quickpay_Input extends Ilib_Payment_Html_Input
     
     
     /**
+     * Constructor
+     * 
+     * @param string $merchant merchant number
+     * @param string $verification_key verification key
+     * @param string $session_id session id
+     */
+    public function __construct($merchant, $verification_key, $session_id)
+    {
+        parent::__construct($merchant, $verification_key, $session_id);
+    }
+    
+    /**
      * Returns a path to a input template matching the provider.
      * 
      * @return string template path

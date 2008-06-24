@@ -26,12 +26,12 @@ class PostprocessTest extends PHPUnit_Framework_TestCase
     function testSetPaymentResponse() 
     {
         $postprocess = $this->createPostprocess();
-        $this->assertTrue($postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605')));
+        $this->assertTrue($postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605'), array(), array(), array()));
     }
     
     function testGetAmount() {
         $postprocess = $this->createPostprocess();
-        $postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605'));
+        $postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605'), array(), array(), array());
         
         $this->assertEquals(100.00, $postprocess->getAmount());
         
@@ -39,7 +39,7 @@ class PostprocessTest extends PHPUnit_Framework_TestCase
     
     function testGetOrderNumber() {
         $postprocess = $this->createPostprocess();
-        $postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605'));
+        $postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605'), array(), array(), array());
         
         $this->assertEquals(1, $postprocess->getOrderNumber());
         
@@ -47,7 +47,7 @@ class PostprocessTest extends PHPUnit_Framework_TestCase
     
     function testGetPbsStatus() {
         $postprocess = $this->createPostprocess();
-        $postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605'));
+        $postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605'), array(), array(), array());
         
         $this->assertEquals(123, $postprocess->getPbsStatus());
         
@@ -55,7 +55,7 @@ class PostprocessTest extends PHPUnit_Framework_TestCase
     
     function testGetTransactionId() {
         $postprocess = $this->createPostprocess();
-        $postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605'));
+        $postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605'), array(), array(), array());
         
         $this->assertEquals(10, $postprocess->getTransactionNumber());
         
@@ -63,7 +63,7 @@ class PostprocessTest extends PHPUnit_Framework_TestCase
     
     function testGetOptionalValues() {
         $postprocess = $this->createPostprocess();
-        $postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605', 'CUSTOM_var1' => 10, 'CUSTOM_var2' => 20));
+        $postprocess->setPaymentResponse(array('amount' => 10000, 'time' => '080101100000', 'ordernum' => 1, 'pbsstat' => 123, 'qpstat' => '000', 'qpstatmsg' => 'valid', 'merchantemail' => 'test@test.dk', 'merchant' => 'merchant', 'currency' => 'DKK', 'cardtype' => 'visa', 'transaction' => 10, 'md5checkV2' => 'd8ed3a808ebea9891eca594cb7b4f605', 'CUSTOM_var1' => 10, 'CUSTOM_var2' => 20), array(), array(), array());
         
         $this->assertEquals(array('var1' => 10, 'var2' => 20), $postprocess->getOptionalValues());
         

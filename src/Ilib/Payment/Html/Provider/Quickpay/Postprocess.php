@@ -25,7 +25,7 @@ class Ilib_Payment_Html_Provider_Quickpay_Postprocess extends Ilib_Payment_Html_
         parent::__construct($merchant, $verification_key, $session_id);
     }
     
-    public function setPaymentResponse($input) {
+    public function setPaymentResponse($post, $get, $session, $payment_target) {
         
         /**
          * amount Beløb i mindste enhed (DKK: 1 kr skrives som 100 øre)
@@ -47,33 +47,33 @@ class Ilib_Payment_Html_Provider_Quickpay_Postprocess extends Ilib_Payment_Html_
         $md5_string = '';
         
         foreach($payment_vars AS $var) {
-            if(empty($input[$var]) ) {
+            if(empty($post[$var]) ) {
                 throw new Exception('the value '.$var.' is missing!');
                 return false;
             }
-            $md5_string .= $input[$var];
+            $md5_string .= $post[$var];
         }
         
         $md5_string .= $this->verification_key;
         // die(md5($md5_string));
         
-        if(empty($input['md5checkV2']) || $input['md5checkV2'] != md5($md5_string)) {
+        if(empty($post['md5checkV2']) || $post['md5checkV2'] != md5($md5_string)) {
             throw new Exception('Check for md5 value failed!');
             return false;
         }
         
-        if($input['qpstat'] != '000') {
+        if($post['qpstat'] != '000') {
             // We try to log the error, but this could probably gives to many items in our log.
             throw new Exception('The payment was not accepted');
         }
         
-        $this->amount = ($input['amount']/100);
-        $this->order_number = $input['ordernum'];
-        $this->pbs_status = $input['pbsstat'];
-        $this->transaction_number = $input['transaction'];
-        $this->transaction_status = $input['qpstat'];
+        $this->amount = ($post['amount']/100);
+        $this->order_number = $post['ordernum'];
+        $this->pbs_status = $post['pbsstat'];
+        $this->transaction_number = $post['transaction'];
+        $this->transaction_status = $post['qpstat'];
         
-        foreach($input AS $key => $optional) {
+        foreach($post AS $key => $optional) {
             if(substr($key, 0, 7) == 'CUSTOM_') {
                 $this->optional_values[substr($key, 7)] = $optional;
             }
