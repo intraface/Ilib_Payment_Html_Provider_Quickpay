@@ -11,8 +11,6 @@
 
 class Ilib_Payment_Html_Provider_Quickpay_Input extends Ilib_Payment_Html_Input
 {
-    
-    
     /**
      * Constructor
      * 
