@@ -4,7 +4,7 @@
     <taskdef classname="phing.tasks.ext.IlibPearDeployerTask" name="peardeploy" />
 
     <property name="package-name" value="${phing.project.name}" />
-    <property name="version" value="0.1.3" />
+    <property name="version" value="0.1.4" />
     <property name="stability" value="alpha" />
     <property name="pear.channel" value="public.intraface.dk" />
 
@@ -87,12 +87,7 @@
     </target>
 
     <target name="test">
-        <exec dir="${tests.dir}" command="phpunit
-           --log-xml ${reports.phpunit.dir}/phpunit.xml
-           --log-pmd ${reports.phpunit.dir}/phpunit.pmd.xml
-           --coverage-xml ${reports.phpunit.dir}/phpunit.coverage.xml
-           --coverage-html ${reports.coverage.dir}/
-           AllTests" passthru="true" checkreturn="true" />
+        <exec dir="${tests.dir}" command="phpunit AllTests" passthru="true" checkreturn="true" />
     </target>
 
 </project>
