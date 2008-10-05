@@ -4,7 +4,7 @@
     <taskdef classname="phing.tasks.ext.IlibPearDeployerTask" name="peardeploy" />
 
     <property name="package-name" value="${phing.project.name}" />
-    <property name="version" value="0.1.4" />
+    <property name="version" value="0.2.0" />
     <property name="stability" value="alpha" />
     <property name="pear.channel" value="public.intraface.dk" />
 
@@ -52,13 +52,13 @@
             <dependencies>
                 <php minimum_version="5.2.0" />
                 <pear minimum_version="1.6.0" recommended_version="1.6.1" />
-                <package name="Ilib_Payment_HTML" channel="public.intraface.dk" recommended_version="0.2.3" minimum_version="0.2.2" />
+                <package name="Ilib_Payment_HTML" channel="public.intraface.dk" recommended_version="0.2.2" minimum_version="0.2.3" />
             </dependencies>
-            <notes>* Added getSecureTunnelUrl to Input</notes>
+            <notes>* Onlinepayments with failure can now also be saved</notes>
         </d51pearpkg2>
     </target>
 
-    <target name="build" depends="prepare, export, test, phpcs, php-documentor, make-pear-package"></target>
+    <target name="build" depends="prepare, export, phpcs, php-documentor, make-pear-package"></target>
     <target name="make-pear-package" depends="pear">
         <tar compression="gzip" destfile="${build.dir}/${package-name}-${version}.tgz" basedir="${build.dir}/package" />
     </target>
@@ -87,7 +87,12 @@
     </target>
 
     <target name="test">
-        <exec dir="${tests.dir}" command="phpunit AllTests" passthru="true" checkreturn="true" />
+        <exec dir="${tests.dir}" command="phpunit
+           --log-xml ${reports.phpunit.dir}/phpunit.xml
+           --log-pmd ${reports.phpunit.dir}/phpunit.pmd.xml
+           --coverage-xml ${reports.phpunit.dir}/phpunit.coverage.xml
+           --coverage-html ${reports.coverage.dir}/
+           AllTests" passthru="true" checkreturn="true" />
     </target>
 
 </project>
