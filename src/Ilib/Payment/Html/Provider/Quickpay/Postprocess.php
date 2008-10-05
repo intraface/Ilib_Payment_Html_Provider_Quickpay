@@ -46,13 +46,17 @@ class Ilib_Payment_Html_Provider_Quickpay_Postprocess extends Ilib_Payment_Html_
         $payment_vars = array('amount', 'time', 'ordernum', 'pbsstat', 'qpstat', 'qpstatmsg', 'merchantemail', 'merchant', 'currency', 'cardtype', 'transaction');
         $md5_string = '';
         
+        if($post['pbsstat'] != '000' && !isset($post['transaction'])) $post['transaction'] = 0;
+        
         foreach($payment_vars AS $var) {
-            if(empty($post[$var]) ) {
+            if(!isset($post[$var]) ) {
                 throw new Exception('the value '.$var.' is missing!');
                 return false;
             }
             $md5_string .= $post[$var];
         }
+        
+        
         
         $md5_string .= $this->verification_key;
         // die(md5($md5_string));
@@ -62,10 +66,11 @@ class Ilib_Payment_Html_Provider_Quickpay_Postprocess extends Ilib_Payment_Html_
             return false;
         }
         
-        if($post['qpstat'] != '000') {
+        // All tries are now added to the order to be able to log the response.
+        // if($post['qpstat'] != '000') {
             // We try to log the error, but this could probably gives to many items in our log.
-            throw new Exception('The payment was not accepted');
-        }
+            // throw new Exception('The payment was not accepted');
+        // }
         
         $this->amount = ($post['amount']/100);
         $this->order_number = $post['ordernum'];
