@@ -17,6 +17,8 @@ class Ilib_Payment_Html_Provider_Quickpay_Postprocess extends Ilib_Payment_Html_
      *
      * @param string $merchant merchant number
      * @param string $language the language used in the payment
+     *
+     * @return void
      */
     public function __construct($merchant, $verification_key, $session_id)
     {
