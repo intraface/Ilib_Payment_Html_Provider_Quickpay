@@ -74,6 +74,8 @@ class Ilib_Payment_Html_Provider_Quickpay_Postprocess extends Ilib_Payment_Html_
         $this->pbs_status = $post['pbsstat'];
         $this->transaction_number = $post['transaction'];
         $this->transaction_status = $post['qpstat'];
+        $this->currency = $payment_target['default_currency'];
+        
 
         foreach ($post as $key => $optional) {
             if (substr($key, 0, 7) == 'CUSTOM_') {
