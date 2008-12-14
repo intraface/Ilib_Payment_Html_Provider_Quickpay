@@ -1,33 +1,48 @@
-    <div id="payment-input">
-        <form action="https://secure.quickpay.dk/quickpay_pay.php" method="post" autocomplete="off" id="payment_details">
-
-            <?php if (!empty($this->document->company_name)): ?>
-                <h2><?php e($this->document->company_name); ?></h2>
-            <?php endif; ?>
-
-            <p><?php e(__('You are about to pay for order number')); ?> <strong>###ORDERNUM###</strong></p> 
-            <p><?php echo '<strong>###CURRENCY### ###AMOUNT_FORMATTED###</strong>'; ?> <?php e(__('will be withdrawed from your card')); ?>.</p>
-        
-            <div id="cards_container">
-                ###CARDS###
+        <form action="https://secure.quickpay.dk/quickpay_pay.php" method="post" autocomplete="off">
+            <div class="s4top">
+            <fieldset class="clearfix">
+            <legend><span><?php e(__('Card information')); ?></span></legend>
+            <div class="s4-inner">
+                <div class="stop">
+                    <label for="cardnum"><?php e(__('Card number')); ?></label>
+                    <input type="text" maxlength="16" size="19" name="cardnum" id="cardnum" />
+                </div>
+                <div>
+                    <label for="month"><?php e(__('Expire date')); ?></label>
+                    <span>
+                    <select name="month" class="s4-select" id="month">###MONTH_OPTIONS###</select>
+                    <strong class="slash">/</strong>
+                    <select name="year" class="s4-select" id="year">###YEAR_OPTIONS###</select>
+                    </span>
+                </div>
+                <div>
+                    <label for="cvd"><?php e(__('Security no.')); ?></label>
+                    <input type="text" maxlength="3" size="3" name="cvd" id="cvd" />
+                </div>
+                <div>
+                    <input class="godkend" type="submit" id="submit" value="<?php e(__('Pay')); ?>" />
+                </div>
             </div>
-            
-            <div id="formrow">
-                <label for="cardnum"><?php e(__('Card number')); ?></label>
-                <input type="text" maxlength="16" size="19" name="cardnum" id="cardnum" />
+            </fieldset>
+        </div>
+        <div class="s4top s4toplast">
+            <fieldset class="clearfix">
+            <legend><span><?php e(__('Company')); ?></span></legend>
+            <div class="s4-inner">
+                <p class="stop"><strong><span><?php e(__('Total amount')); ?></span></strong> ###CURRENCY### ###AMOUNT_FORMATTED###</p>
+                <p><strong><span><?php e(__('Order')); ?></span>###ORDERNUM###</strong></p>
+                <p><span><?php e(__('Company')); ?></span> <b>BilligVVS.dk ApS<br />
+                    G&aring;seagervej 12A<br />
+                    8250 Eg&aring;</b></p>
+                <p><span><?php e(__('Vat no.')); ?></span>27 27 50 01</p>
             </div>
-            
-            <div id="formrow">
-                <label for="month"><?php e(__('Expire date (mm/yy)')); ?></label>
-                <select name="month" id="month">###MONTH_OPTIONS###</select> / 
-                <select name="year" id="year">###YEAR_OPTIONS###</select>
-            </div>
-            
-            <div id="formrow">
-                <label for="cvd"><?php e(__('Cvd numbers')); ?></label>
-                <input type="text" maxlength="3" size="3" name="cvd" id="cvd" />
-            </div>
-
-            <input name="submit" type="submit" value="<?php e(__('Pay')); ?>">
-        </form>
-    </div>
+            </fieldset>
+        </div>
+       </form>
+        <div class="s4base">
+            <fieldset class="clearfix">
+            <legend><span><?php e(__('Available cards')); ?></span></legend>
+            ###CARDS###
+            </fieldset>
+        </div>
+<br>
