@@ -31,10 +31,10 @@
             <div class="s4-inner">
                 <p class="stop"><strong><span><?php e(__('Total amount')); ?></span></strong> ###CURRENCY### ###AMOUNT_FORMATTED###</p>
                 <p><strong><span><?php e(__('Order')); ?></span>###ORDERNUM###</strong></p>
-                <p><span><?php e(__('Company')); ?></span> <b>BilligVVS.dk ApS<br />
-                    G&aring;seagervej 12A<br />
-                    8250 Eg&aring;</b></p>
-                <p><span><?php e(__('Vat no.')); ?></span>27 27 50 01</p>
+                <p><span><?php e(__('Company')); ?></span> <b><?php e($this->getCompanyName()); ?><br />
+                    <?php e($this->getCompanyAddress()); ?><br />
+                    <?php e($this->getCompanyZip()); ?></b></p>
+                <p><span><?php e(__('Vat no.')); ?></span><?php e($this->getCompanyVatNumber()); ?></p>
             </div>
             </fieldset>
         </div>

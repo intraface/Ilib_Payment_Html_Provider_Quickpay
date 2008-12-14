@@ -1,7 +1,7 @@
 <?php
 /**
  * To control Quickpay <www.quickpay.dk> input page for online payments
- * 
+ *
  * @author sune jensen <sj@sunet.dk>
  * @version 0.0.1
  * @package Payment_Html_Provider_Quickpay
@@ -13,7 +13,7 @@ class Ilib_Payment_Html_Provider_Quickpay_Input extends Ilib_Payment_Html_Input
 {
     /**
      * Constructor
-     * 
+     *
      * @param string $merchant merchant number
      * @param string $verification_key verification key
      * @param string $session_id session id
@@ -22,20 +22,20 @@ class Ilib_Payment_Html_Provider_Quickpay_Input extends Ilib_Payment_Html_Input
     {
         parent::__construct($merchant, $verification_key, $session_id);
     }
-    
+
     /**
      * Returns a path to a input template matching the provider.
-     * 
+     *
      * @return string template path
      */
-    public function getInputTemplatePath() 
+    public function getInputTemplatePath()
     {
         return 'Ilib/Payment/Html/Provider/Quickpay/templates/payment-input-tpl.php';
     }
-    
+
     /**
      * Returns the url to set in front of local urls, to make it secured
-     * 
+     *
      * @return string secure tunnel url
      */
     public function getSecureTunnelUrl()
@@ -43,6 +43,3 @@ class Ilib_Payment_Html_Provider_Quickpay_Input extends Ilib_Payment_Html_Input
         return 'https://secure.quickpay.dk/proxy.php/';
     }
 }
-
-
-?>
