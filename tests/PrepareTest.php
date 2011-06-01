@@ -1,14 +1,10 @@
 <?php
-require_once 'config.local.php';
-require_once 'PHPUnit/Framework.php';
-
-PHPUnit_Util_Filter::addDirectoryToWhitelist(realpath(dirname(__FILE__) . '/../src/'));
+require_once 'config.test.php';
 
 class PrepareTest extends PHPUnit_Framework_TestCase
 {
     function setUp()
     {
-
     }
     
     function createPrepare() {
@@ -41,10 +37,7 @@ class PrepareTest extends PHPUnit_Framework_TestCase
                 '<input type="hidden" name="CUSTOM_var1" value="10" />' .
                 '<input type="hidden" name="CUSTOM_var2" value="20" />';
         
-        
-        
-        $this->assertEquals($expected, $prepare->getPostFields());
-         
+        $this->assertEquals($expected, $prepare->getPostFields());         
     }
 }
-?>
+
